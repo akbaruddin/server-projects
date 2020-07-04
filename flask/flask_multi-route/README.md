@@ -3,7 +3,7 @@
 ### Settings
 `.env.local` rename to `.env`
 
-## Run
+### Run
 ```shell
 gunicorn -w 1 app:app
 ```
