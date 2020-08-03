@@ -178,3 +178,44 @@ app.use('/static', express.static('public'));
 app.listen(3000);
 ```
 
+## Templating
+
+Pug is a templating engine for Express. Templating engines are used to remove the cluttering of our server code with HTML, concatenating strings wildly to existing HTML templates. Pug is a very powerful templating engine which has a variety of features including filters, includes, inheritance, interpolation, etc. There is a lot of ground to cover on this.
+
+To use Pug with Express, we need to install it,
+
+```bash
+pnpm i pug
+```
+
+Add the following code to our `index.js` file.
+
+```javascript
+app.set('view engine', 'pug');
+app.set('views','./views');
+```
+
+View Path
+
+```
+/views
+---/index.pug
+```
+
+Create `index.pug` file
+```pug
+doctype html
+html
+   head
+      title = "Hello Pug"
+   body
+      p.greetings#people Hello World!
+```
+
+Render
+```javascript
+app.get("/", function(req, res) {
+  res.render("index"); // index.pug -> index
+})
+```
+
