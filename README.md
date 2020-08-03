@@ -63,3 +63,20 @@ Here we aare sending the string `"Hello World"`
 | **host**     | Name of the domain. We need to set it when you deploy our apps to the cloud |
 | **backlog**  | The maximum number of queued pending connections. The default is 511 |
 | **callback** | An asynchronous function that is called when the server starts listening for requests |
+
+## Middleware
+
+Middleware functions are functions that have access to **request object(req)**, **the response object(res)**, and the next middleware function in the application's request-response cycle. These functions are used to modify req and res objects for tasks like parsing request bodies, adding response header, etc.
+
+```javascript
+// Middleware function to log request protocol
+app.use('/things', function(req, res, next){
+   console.log("A request for things received at " + Date.now());
+   next();
+});
+
+// Route handler that sends the response
+app.get('/things', function(req, res){
+   res.send('Things');
+});
+```
