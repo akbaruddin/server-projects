@@ -157,3 +157,24 @@ app.get('*', function(req, res){
 app.listen(3000);
 ```
 
+## Serving static files
+
+Static files are files that clients download as they are from the server. Create a new directory, public. Express, by default does not allow you to serve static files. You need to enable it using the following built-in middleware.
+
+```javascript
+app.use(express.static('public'));
+```
+
+### Virtual Path Prefix
+
+We can also provide a path prefix for serving static files. For example, if you want to provide a path prefix like '/static', we need to include the following code in our `index.js` file 
+
+```javascript
+var express = require('express');
+var app = express();
+
+app.use('/static', express.static('public'));
+
+app.listen(3000);
+```
+

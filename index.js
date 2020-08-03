@@ -1,6 +1,8 @@
 const express = require("express");
 const app = express();
 
+app.use('/static', express.static('public'));
+
 // Middleware function to log request protocol
 app.use('/things', function(req, res, next){
   console.log("A request for things received at " + Date.now());
