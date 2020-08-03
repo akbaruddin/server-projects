@@ -7,13 +7,34 @@ app.use('/things', function(req, res, next){
   next();
 });
 
+app.get('/things/:id([0-9]{5})', function(req, res){
+  res.send('id: ' + req.params.id);
+});
+
+app.get('/things/:name/:id', function(req, res) {
+  res.send('id: ' + req.params.id + ' and name: ' + req.params.name);
+});
+
 // Route handler that sends the response
 app.get('/things', function(req, res){
   res.send('Things');
 });
 
+app.post("/hello", function(req, res){
+  res.send("You Just called the post method at /hello/")
+})
+
+app.get('/:id', function(req, res){
+  res.send('The id you specified is ' + req.params.id);
+});
+
 app.get("/", function(req, res) {
   res.send("Hello world!");
 })
+
+// Other routes here
+app.get('*', function(req, res){
+  res.send('Sorry, this is an invalid URL.');
+});
 
 app.listen(3000);

@@ -80,3 +80,80 @@ app.get('/things', function(req, res){
    res.send('Things');
 });
 ```
+
+## Route
+
+`app.method(path, handler)`
+
+This METHOD can be applied to any one of the HTTP verbs - get, set, put, post, delete.
+
+```javascript
+app.post("/hello", function(req, res){
+  res.send("You Just called the post method at /hello/")
+})
+```
+
+#### Test
+
+```bash
+curl -X POST "http://localhost:3000/hello"
+```
+
+### URL binding
+
+We can now define routes, but those are static or fixed. To use the dynamic routes, we SHOULD provide different types of routes. Using dynamic routes allows  us to pass parameters and process based on them.
+
+Example
+url: `http://localhost:3000/123`
+
+```javascript
+var express = require('express');
+var app = express();
+
+app.get('/:id', function(req, res){
+   res.send('The id you specified is ' + req.params.id);
+});
+app.listen(3000);
+```
+
+Complex
+url: `http://localhost:3000/things/tutorialspoint/12345`
+
+```javascript
+var express = require('express');
+var app = express();
+
+app.get('/things/:name/:id', function(req, res) {
+   res.send('id: ' + req.params.id + ' and name: ' + req.params.name);
+});
+app.listen(3000);
+```
+
+## Pattern Matched Routes
+
+we can also use **regex** to restrict URL parameter matching. Let us assume we need the **id** to be a 5-digit long number. We can use the following route definition.
+
+```javascript
+var express = require('express');
+var app = express();
+
+app.get('/things/:id([0-9]{5})', function(req, res){
+   res.send('id: ' + req.params.id);
+});
+
+app.listen(3000)
+```
+
+`Cannot GET <your-request-route>`
+
+```javascript
+var express = require('express');
+var app = express();
+
+// Other routes here
+app.get('*', function(req, res){
+   res.send('Sorry, this is an invalid URL.');
+});
+app.listen(3000);
+```
+
