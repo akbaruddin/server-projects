@@ -1,0 +1,13 @@
+doctype html
+html
+  head
+    title= "Hello Pug"
+  body
+    p.greetings#people Hello World!
+    div(
+      id="g_id_onload",
+      data-client_id="578704324972-ullg1utprq3oi6nq87u82udtbhro0a8k.apps.googleusercontent.com",
+      data-callback="oneTapLogin"
+    )
+    script(src="https://accounts.google.com/gsi/client", async, defer)
+    script(src="/static/main.js")
